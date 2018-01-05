@@ -1,0 +1,39 @@
+package org.tohu.examples.loyalty
+
+import java.util.Calendar;
+
+import org.tohu.Group;
+import org.tohu.InvalidAnswer;
+import org.tohu.MultipleChoiceQuestion;
+import org.tohu.MultipleChoiceQuestion.PossibleAnswer;
+import org.tohu.Note;
+import org.tohu.Question;
+import org.tohu.Questionnaire;
+import de.hybris.platform.servicelayer.search.FlexibleSearchQuery;
+import de.hybris.platform.core.Registry;
+import de.hybris.platform.core.model.c2l.LanguageModel;
+import de.hybris.platform.servicelayer.search.FlexibleSearchService;
+
+rule "Languages"
+dialect "mvel"
+when
+		g : Group(id == "PersonalDetails", 
+			  items != null, 
+			  items not contains "languages")		
+then
+		MultipleChoiceQuestion mcQuestion = new MultipleChoiceQuestion("languages");
+		mcQuestion.setAnswerType(Question.TYPE_TEXT);
+		mcQuestion.setPreLabel("Languages");
+
+		FlexibleSearchService flexibleSearchService = Registry.getApplicationContext().getBean("flexibleSearchService");
+		answers = flexibleSearchService.search("select {pk} from {Language}").getResult();
+		i = 0;
+		for (LanguageModel item : answers) {
+		 mcQuestion.insertPossibleAnswer(new PossibleAnswer(item.getIsocode(), item.getIsocode()), i++);
+		}
+		insert(mcQuestion);
+		g.addItem(mcQuestion.getId());
+
+		update(g)
+
+end

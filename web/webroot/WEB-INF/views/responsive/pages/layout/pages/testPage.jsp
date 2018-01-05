@@ -20,6 +20,8 @@
 <script type="text/javascript" src="/trainingstorefront/_ui/shared/js/tohu/dynamicUI_interface.js"></script>
 <script type="text/javascript" src="/trainingstorefront/_ui/shared/js/tohu/dynamicUI_html.js"></script>
 <script type="text/javascript" src="/trainingstorefront/_ui/shared/js/tohu/dynamicUI_main.js"></script>
+<script type="text/javascript" src="/trainingstorefront/_ui/shared/js/tohu/extras.js"></script>
+<script type="text/javascript" src="/trainingstorefront/_ui/shared/js/tohu/jquery/toxml.js"></script>
 <link rel="stylesheet" type="text/css" media="screen" href="css/style.css" />
 <script type="text/javascript">
 $(document).ready(function() {

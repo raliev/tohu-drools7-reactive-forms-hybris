@@ -15,7 +15,7 @@
  *
  * @author Derek Rendall
  */
-package org.tohu.examples.loyalty.others
+package org.tohu.examples.loyalty
 
 import java.util.Calendar;
 
@@ -29,10 +29,63 @@ import org.tohu.Question;
 import org.tohu.Questionnaire;
 
 import org.drools.core.spi.KnowledgeHelper;
-import org.kie.api.runtime.ClassObjectFilter;
+import org.drools.core.ClassObjectFilter;
 
 
 
+rule "Main BA Yes Clicked support"
+dialect "mvel"
+when		
+	q : Question(id == "budgetAirways", answer == true);
+then
+	String groupId = q.id + "_details" ;
+	createDetails(drools, groupId, q.id);		
+end
+rule "Main OF Yes Clicked support"
+dialect "mvel"
+when	
+	Question(id == "onlineFood", answer == true);
+then
+	String id = "onlineFood";
+	String groupId =  id + "_details" ;
+	createDetails(drools, groupId, null);		
+end
+rule "Main MC Yes Clicked support"
+dialect "mvel"
+when	
+	Question(id == "mochaCoffee", answer == true);
+then
+	String id = "mochaCoffee";
+	String groupId =  id + "_details" ;
+	createDetails(drools, groupId, null);		
+end
+rule "Joint OF Yes Clicked support"
+dialect "mvel"
+when	
+	Question(id == "jointOnlineFood", answer == true);
+then
+	String id = "jointOnlineFood";
+	String groupId =  id + "_details" ;
+	createDetails(drools, groupId, null);		
+end
+rule "Joint Mocha Yes Clicked support"
+dialect "mvel"
+when	
+	Question(id == "jointMochaCoffee", answer == true);
+then
+	String id = "jointMochaCoffee";
+	String groupId =  id + "_details" ;
+	createDetails(drools, groupId, null);		
+end
+rule "Joint BA Yes Clicked support"
+dialect "mvel"
+when	
+	Question(id == "jointBudgetAirways", answer == true);
+then
+	String id = "jointBudgetAirways";
+	String groupId =  id + "_details" ;
+	createDetails(drools, groupId, id);		
+end
 
 
 rule "Main BA Yes clicked"
@@ -41,15 +94,14 @@ no-loop
 when
 	q : Question(id == "budgetAirways");
 	a : Answer(questionId == q.id, value == "true");
-	questionnaire : Questionnaire(branched == false);
+	questionnaire : Questionnaire(branched == "false");
 	
 then
 	String groupId = q.getId() + "_details" ;
 
 	questionnaire.navigationBranch(new String[]{groupId}, groupId);
 	update(questionnaire);
-	
-	createDetails(drools, groupId, q.getId());		
+
 end
 
 
@@ -67,7 +119,7 @@ then
 	questionnaire.navigationBranch(new String[]{groupId}, groupId);
 	update(questionnaire);
 	
-	createDetails(drools, groupId, null);		
+//	createDetails(drools, groupId, null);		
 end
 
 rule "Main MC Yes clicked"
@@ -84,7 +136,7 @@ then
 	questionnaire.navigationBranch(new String[]{groupId}, groupId);
 	update(questionnaire);
 	
-	createDetails(drools, groupId, null);		
+//	createDetails(drools, groupId, null);		
 end
 
 rule "Joint BA Yes clicked"
@@ -101,7 +153,7 @@ then
 	questionnaire.navigationBranch(new String[]{groupId}, groupId);
 	update(questionnaire);
 	
-	createDetails(drools, groupId, q.getId());		
+//	createDetails(drools, groupId, q.getId());		
 end
 
 rule "Joint OF Yes clicked"
@@ -118,7 +170,6 @@ then
 	questionnaire.navigationBranch(new String[]{groupId}, groupId);
 	update(questionnaire);
 	
-	createDetails(drools, groupId, null);		
 end
 
 
@@ -136,7 +187,6 @@ then
 	questionnaire.navigationBranch(new String[]{groupId}, groupId);
 	update(questionnaire);
 	
-	createDetails(drools, groupId, null);		
 end
 
 

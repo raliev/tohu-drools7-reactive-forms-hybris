@@ -235,7 +235,7 @@ function preProcessServerChanges(response) {
 function preProcessServerCreateList(jQueryPath, xml, changes, resultSet) {
 	if (isDebug()) {
 		debug("preProcessServerCreateList() jQueryPath=" + jQueryPath + " changes=" + changes
-				+ " xml=" + $(xml).toXML() + " resultSet=" + objectToString(resultSet));
+				+ " xml=" + $(xml).val() + " resultSet=" + objectToString(resultSet));
 	}
 	var obj = null;
 	var i, j;
@@ -358,7 +358,7 @@ function preProcessServerCreateObject(obj) {
  */
 function preProcessServerUpdateList(jQueryPath, xml, resultSet) {
 	if (isDebug()) {
-		debug("preProcessServerUpdateList() jQueryPath=" + jQueryPath + " xml=" + $(xml).toXML()
+		debug("preProcessServerUpdateList() jQueryPath=" + jQueryPath + " xml="  //+$(xml).toXML()
 				+ " resultSet=" + objectToString(resultSet));
 	}
 	
@@ -405,7 +405,7 @@ function preProcessServerUpdateObject(obj) {
  */
 function preProcessServerDeleteList(jQueryPath, xml, resultSet) {
 	if (isDebug()) {
-		debug("preProcessServerDeleteList() jQueryPath=" + jQueryPath + " xml=" + $(xml).toXML()
+		debug("preProcessServerDeleteList() jQueryPath=" + jQueryPath + " xml=" //+ $(xml).toXML()
 				+ " resultSet=" + objectToString(resultSet));
 	}
 	
@@ -638,10 +638,10 @@ function createFactObject(xml, isDelete) {
 		jq = jq.get(0).children[0];
 	}
 	if (isDebug()) {
-		debug("createFactObject() tagName=" + tagName + " xml=" + jq.toXML());
+		debug("createFactObject() tagName=" + tagName + " xml=" + jq.innerHTML);
 	}
 	switch (tagName) {
-	case "org.tohu.Questionnaire":
+	case "org.tohu.Questionnaire":		
 		obj = new QuestionnaireObject();
 		obj.id = getChildText(jq, "id");
 		// TODO this meeds some more work to convert date formats specified in some industry standard way into those supported by the JQuery $.datePicker.formatDate function 

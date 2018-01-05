@@ -15,7 +15,7 @@
  *
  * @author Derek Rendall
  */
-package org.tohu.examples.loyalty.page2
+package org.tohu.examples.loyalty
 
 import java.util.Calendar;
 
@@ -68,7 +68,7 @@ then
 	mcQuestion.setAnswerType(Question.TYPE_TEXT);
 	mcQuestion.setPreLabel("Income Bracket");
 	mcQuestion.setPossibleAnswers({
-		new PossibleAnswer( null, "Please select ..."),
+		new PossibleAnswer(null, "Please select ..."),
 		new PossibleAnswer("1", "Less than 20,000"),
 		new PossibleAnswer("2", "20,000 to 39,999"),
 		new PossibleAnswer("3", "40,000 to 59,999"),

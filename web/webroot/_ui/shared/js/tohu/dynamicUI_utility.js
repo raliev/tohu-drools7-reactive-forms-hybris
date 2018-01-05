@@ -96,6 +96,7 @@ function zeroPad(n, digits) {
  * @return Boolean
  */
 function isDebug() {
+	//debugFlag=1;
 	if (debugFlag) {
 		if (window.debugService) {
 			// Web Development Helper (IE)

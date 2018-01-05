@@ -293,7 +293,7 @@ function attachChangeHandler(obj) {
 		debug("attachChangeHandler() radio");
 		input.find(":radio").unbind();
 		input.find(":radio").click(function() {		
-			if ($(this).val() == "on") {				
+			if ($(this).prop('checked')) {				
 //				handleChangeEvent(obj.id, $(this).attr("value"), questionTabForward);
 				handleChangeEvent(obj.id, $(this).val(), questionTabForward);
 			}
@@ -317,7 +317,7 @@ function attachChangeHandler(obj) {
 		input.unbind();
 		input.click(function() {			
 			var newValue = null;
-			if ($(this).val() == "on") {
+			if ($(this).prop('checked')) {
 				newValue = "true";
 			}
 			else {

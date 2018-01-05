@@ -5,7 +5,7 @@
 <link rel="stylesheet" type="text/css" media="screen, projection" href="/trainingstorefront/_ui/responsive/theme-alpha/css/tohu/ui.theme.css" />
 <link rel="stylesheet" type="text/css" media="screen, projection" href="/trainingstorefront/_ui/responsive/theme-alpha/css/tohu/ui.datepicker.css" />
 <link rel="stylesheet" type="text/css" media="screen, projection" href="/trainingstorefront/_ui/responsive/theme-alpha/css/tohu/jquery.readonly.css" />
-<script type="text/javascript" src="/trainingstorefront/_ui/shared/js/tohu/jquery/jquery-1.3.2.min.js"></script>
+<script type="text/javascript" src="/trainingstorefront/_ui/responsive/common/js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="/trainingstorefront/_ui/shared/js/tohu/jquery/ui.core.js"></script>
 <script type="text/javascript" src="/trainingstorefront/_ui/shared/js/tohu/jquery/ui.datepicker.js"></script>
 <script type="text/javascript" src="/trainingstorefront/_ui/shared/js/tohu/jquery/cookie.js"></script>
@@ -20,6 +20,8 @@
 <script type="text/javascript" src="/trainingstorefront/_ui/shared/js/tohu/dynamicUI_interface.js"></script>
 <script type="text/javascript" src="/trainingstorefront/_ui/shared/js/tohu/dynamicUI_html.js"></script>
 <script type="text/javascript" src="/trainingstorefront/_ui/shared/js/tohu/dynamicUI_main.js"></script>
+<script type="text/javascript" src="/trainingstorefront/_ui/shared/js/tohu/extras.js"></script>
+<script type="text/javascript" src="/trainingstorefront/_ui/shared/js/tohu/jquery/toxml.js"></script>
 <link rel="stylesheet" type="text/css" media="screen" href="css/style.css" />
 <script type="text/javascript">
 $(document).ready(function() {

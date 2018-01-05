@@ -27,18 +27,17 @@ import org.tohu.Note;
 import org.tohu.Question;
 import org.tohu.Questionnaire;
 
-rule "Overview"
+rule "LoyaltyQuestionnaire"
 dialect "mvel"
 then
 	Questionnaire questionnaire = new Questionnaire("LoyaltyQuestionnaire");
 	questionnaire.setLabel("Solnet Loyalty Card Signup");
-	questionnaire.setCompletionAction("extract.pdf");
+	questionnaire.setCompletionAction("loyaltyFormSubmit");
 	
 	questionnaire.addItem("ContactDetailsPage");
 	questionnaire.addItem("DemographicDetailsPage");
 	questionnaire.addItem("MainOtherLoyaltyProgramsPage");
 	
-	// This is how we enable "pages"
 	questionnaire.setActiveItem("ContactDetailsPage");
 	
 	insertLogical(questionnaire);

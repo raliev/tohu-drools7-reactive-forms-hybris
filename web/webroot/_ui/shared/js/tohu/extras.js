@@ -13,8 +13,8 @@ function postProcessCreate(obj) {
 	    	var value = $(selector).attr("checked") ? "Yes" : "No";
 	    	var html = "<span><span id=\"" + yesNoId + "\" class=\"answer\">" + value + "</span>"; 
 	    	html += "<span class=\"yesNoControls\">";
-	    	html += "<a href=\"#\" onclick=\"$('" + selector + "').attr('checked', true).click()\">Yes</a>";
-	    	html += "<a href=\"#\" onclick=\"$('" + selector + "').attr('checked', false).click()\">No</a>";
+	    	html += "<a href=\"#\" onclick=\"a=$('" + selector + "'); if (!a.prop('checked')) {a.click();} else { a.prop('checked', false).click(); }\">Yes</a>";
+	    	html += "<a href=\"#\" onclick=\"a=$('" + selector + "'); if (a.prop('checked')) {a.click();} else { a.prop('checked', true).click(); }\">No</a>";
 	    	html += "</span></span>";
 			$(selector).after(html);
 			$(selector).click(function() {
@@ -24,6 +24,8 @@ function postProcessCreate(obj) {
 			});
 		}
 	}
+	
+
 }
 
 

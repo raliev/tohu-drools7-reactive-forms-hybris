@@ -1,0 +1,30 @@
+package org.tohu.examples.loyalty
+
+import org.tohu.InvalidAnswer;
+import org.tohu.Question;
+import de.hybris.platform.core.Registry;
+import de.hybris.platform.servicelayer.search.FlexibleSearchService;
+import de.hybris.platform.servicelayer.search.FlexibleSearchQuery;
+import de.hybris.platform.servicelayer.search.SearchResult;
+
+rule "EmailValidatorAgainstTheDatabase"
+dialect "mvel"
+when
+	question : Question(answerType == "text.email", answered == true, answer : textAnswer);
+	eval(!existingEmail(answer));
+then
+	insertLogical(new InvalidAnswer(question.getId(), "This is not an existing email address"));
+end
+
+function boolean existingEmail(String email)
+{
+ FlexibleSearchService flexibleSearchService = (FlexibleSearchService) Registry.getApplicationContext().getBean("flexibleSearchService");
+ FlexibleSearchQuery query = new FlexibleSearchQuery("select {pk} from {Customer} where {uid} = ?email"); 
+ query.addQueryParameter("email", email);
+ SearchResult searchResult = flexibleSearchService.search(query);
+ System.out.println("delay start..");
+ Thread.sleep(2000);
+ System.out.println("delay finish..");
+ int foundEmails = searchResult.getCount();
+ if (foundEmails > 0) { return true; } else { return false; } 
+}

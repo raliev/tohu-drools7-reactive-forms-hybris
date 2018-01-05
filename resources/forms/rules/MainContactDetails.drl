@@ -15,7 +15,7 @@
  *
  * @author Derek Rendall
  */
-package org.tohu.examples.loyalty.page1
+package org.tohu.examples.loyalty
 
 import java.util.Calendar;
 
